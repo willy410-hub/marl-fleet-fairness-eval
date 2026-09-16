@@ -311,4 +311,4 @@ informative as what was built:
 - **A dedicated vector/GIS routing engine** -- the city grid uses Chebyshev distance, not real street-network routing, consistent with the "lite" scope of the originating specification.
 - **Weather/event-driven demand spikes are modeled as a uniform multiplier**, not a genuinely separate stochastic process -- sufficient to test robustness-under-load, not a full weather simulation.
 
-> **Note:** See [DESIGN.md] for the full environment design - motivation, reward architecture, and evaluation protocol.
+> **Note:** See **[DESIGN.md](./DESIGN.md)** for the full environment design -- motivation, reward architecture, and evaluation protocol.
