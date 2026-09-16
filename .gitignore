@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+
+# Raw data (large files -- see data/tlc_extract_calibration.py to regenerate)
+data/raw/*.csv.gz
+data/raw/*.parquet
+data/raw/*.npy
+
+# Training artifacts
+checkpoints/
+ray_results/
+
+# Annotation data (real ratings, if any are collected)
+annotation_app/data/ratings/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

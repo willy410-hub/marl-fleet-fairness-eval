@@ -1,0 +1,2410 @@
+[
+  {
+    "sample_id": "sample_0000",
+    "episode_seed": 777,
+    "step": 90,
+    "agent_id": "driver_4",
+    "agent_position": [
+      4,
+      3
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          1,
+          3
+        ],
+        "payout": 11.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          2,
+          2
+        ],
+        "payout": 16.4,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 14.0,
+    "zone_completion_counts_before": [
+      1,
+      1,
+      0,
+      1
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0001",
+    "episode_seed": 779,
+    "step": 47,
+    "agent_id": "driver_3",
+    "agent_position": [
+      7,
+      2
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          0
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          5,
+          2
+        ],
+        "payout": 12.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 13.4,
+    "zone_completion_counts_before": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0002",
+    "episode_seed": 779,
+    "step": 47,
+    "agent_id": "driver_6",
+    "agent_position": [
+      4,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          0
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          5,
+          2
+        ],
+        "payout": 12.8,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 13.4,
+    "zone_completion_counts_before": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0003",
+    "episode_seed": 779,
+    "step": 73,
+    "agent_id": "driver_0",
+    "agent_position": [
+      4,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          1,
+          9
+        ],
+        "payout": 15.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          5,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 15.2,
+    "mean_visible_payout": 14.0,
+    "zone_completion_counts_before": [
+      1,
+      1,
+      2,
+      1
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0004",
+    "episode_seed": 779,
+    "step": 148,
+    "agent_id": "driver_0",
+    "agent_position": [
+      4,
+      7
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          5
+        ],
+        "payout": 15.2,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          6,
+          5
+        ],
+        "payout": 11.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      8,
+      7,
+      3
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0005",
+    "episode_seed": 780,
+    "step": 59,
+    "agent_id": "driver_5",
+    "agent_position": [
+      4,
+      7
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          1,
+          8
+        ],
+        "payout": 17.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          4,
+          9
+        ],
+        "payout": 18.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 18.200000000000003,
+    "zone_completion_counts_before": [
+      2,
+      1,
+      1,
+      1
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0006",
+    "episode_seed": 780,
+    "step": 96,
+    "agent_id": "driver_3",
+    "agent_position": [
+      2,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          0,
+          3
+        ],
+        "payout": 18.8,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          0
+        ],
+        "payout": 17.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 18.8,
+    "mean_visible_payout": 18.200000000000003,
+    "zone_completion_counts_before": [
+      2,
+      2,
+      2,
+      1
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0007",
+    "episode_seed": 780,
+    "step": 110,
+    "agent_id": "driver_2",
+    "agent_position": [
+      5,
+      8
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          8
+        ],
+        "payout": 9.2,
+        "distance": 0
+      },
+      {
+        "pickup": [
+          8,
+          7
+        ],
+        "payout": 11.6,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 11.6,
+    "mean_visible_payout": 10.399999999999999,
+    "zone_completion_counts_before": [
+      4,
+      3,
+      2,
+      1
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0008",
+    "episode_seed": 780,
+    "step": 118,
+    "agent_id": "driver_2",
+    "agent_position": [
+      4,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          7,
+          9
+        ],
+        "payout": 18.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 18.8,
+    "mean_visible_payout": 15.8,
+    "zone_completion_counts_before": [
+      4,
+      5,
+      3,
+      3
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0009",
+    "episode_seed": 780,
+    "step": 139,
+    "agent_id": "driver_0",
+    "agent_position": [
+      2,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          0,
+          1
+        ],
+        "payout": 17.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          0,
+          2
+        ],
+        "payout": 15.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 15.2,
+    "mean_visible_payout": 16.4,
+    "zone_completion_counts_before": [
+      5,
+      5,
+      3,
+      5
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0010",
+    "episode_seed": 780,
+    "step": 142,
+    "agent_id": "driver_0",
+    "agent_position": [
+      1,
+      3
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          4,
+          2
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      5,
+      5,
+      3,
+      5
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0011",
+    "episode_seed": 780,
+    "step": 142,
+    "agent_id": "driver_1",
+    "agent_position": [
+      2,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          4,
+          2
+        ],
+        "payout": 12.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      5,
+      5,
+      3,
+      5
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0012",
+    "episode_seed": 780,
+    "step": 147,
+    "agent_id": "driver_5",
+    "agent_position": [
+      8,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          5
+        ],
+        "payout": 17.6,
+        "distance": 0
+      },
+      {
+        "pickup": [
+          8,
+          2
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 17.6,
+    "mean_visible_payout": 15.200000000000001,
+    "zone_completion_counts_before": [
+      5,
+      5,
+      3,
+      5
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0013",
+    "episode_seed": 781,
+    "step": 3,
+    "agent_id": "driver_4",
+    "agent_position": [
+      1,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          2,
+          7
+        ],
+        "payout": 11.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 11.6,
+    "mean_visible_payout": 12.2,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0014",
+    "episode_seed": 781,
+    "step": 3,
+    "agent_id": "driver_7",
+    "agent_position": [
+      3,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          2,
+          7
+        ],
+        "payout": 11.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 12.2,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0015",
+    "episode_seed": 781,
+    "step": 120,
+    "agent_id": "driver_0",
+    "agent_position": [
+      8,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          9,
+          5
+        ],
+        "payout": 17.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          7,
+          3
+        ],
+        "payout": 16.4,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 17.6,
+    "mean_visible_payout": 17.0,
+    "zone_completion_counts_before": [
+      2,
+      4,
+      2,
+      3
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0016",
+    "episode_seed": 782,
+    "step": 45,
+    "agent_id": "driver_3",
+    "agent_position": [
+      3,
+      7
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          4,
+          7
+        ],
+        "payout": 12.8,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          0,
+          4
+        ],
+        "payout": 14.0,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 13.4,
+    "zone_completion_counts_before": [
+      0,
+      2,
+      1,
+      2
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0017",
+    "episode_seed": 782,
+    "step": 112,
+    "agent_id": "driver_0",
+    "agent_position": [
+      3,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          2,
+          7
+        ],
+        "payout": 16.4,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          2,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 10.4,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      4,
+      2,
+      4
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0018",
+    "episode_seed": 782,
+    "step": 136,
+    "agent_id": "driver_4",
+    "agent_position": [
+      2,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          3,
+          1
+        ],
+        "payout": 11.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          2,
+          0
+        ],
+        "payout": 14.0,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 11.6,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      5,
+      7,
+      4,
+      6
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0019",
+    "episode_seed": 783,
+    "step": 31,
+    "agent_id": "driver_5",
+    "agent_position": [
+      3,
+      6
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          9
+        ],
+        "payout": 18.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          5,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 15.8,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      1,
+      2
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0020",
+    "episode_seed": 783,
+    "step": 82,
+    "agent_id": "driver_6",
+    "agent_position": [
+      5,
+      2
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          0
+        ],
+        "payout": 16.4,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          3,
+          3
+        ],
+        "payout": 14.0,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 15.2,
+    "zone_completion_counts_before": [
+      0,
+      2,
+      1,
+      3
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0021",
+    "episode_seed": 783,
+    "step": 98,
+    "agent_id": "driver_3",
+    "agent_position": [
+      6,
+      7
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          8
+        ],
+        "payout": 10.4,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          3,
+          7
+        ],
+        "payout": 9.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 9.8,
+    "zone_completion_counts_before": [
+      1,
+      3,
+      2,
+      4
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0022",
+    "episode_seed": 783,
+    "step": 128,
+    "agent_id": "driver_6",
+    "agent_position": [
+      2,
+      4
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          6
+        ],
+        "payout": 11.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          1,
+          6
+        ],
+        "payout": 15.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 15.2,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      4,
+      5,
+      8
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0023",
+    "episode_seed": 783,
+    "step": 133,
+    "agent_id": "driver_2",
+    "agent_position": [
+      5,
+      3
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          6,
+          1
+        ],
+        "payout": 17.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 14.0,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      7,
+      8
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0024",
+    "episode_seed": 784,
+    "step": 91,
+    "agent_id": "driver_0",
+    "agent_position": [
+      4,
+      3
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          6
+        ],
+        "payout": 9.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          5
+        ],
+        "payout": 9.2,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 10.4,
+    "zone_completion_counts_before": [
+      2,
+      1,
+      2,
+      1
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0025",
+    "episode_seed": 784,
+    "step": 92,
+    "agent_id": "driver_1",
+    "agent_position": [
+      3,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          6
+        ],
+        "payout": 9.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          0,
+          5
+        ],
+        "payout": 16.4,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          5
+        ],
+        "payout": 9.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 9.2,
+    "mean_visible_payout": 11.899999999999999,
+    "zone_completion_counts_before": [
+      2,
+      1,
+      2,
+      1
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0026",
+    "episode_seed": 784,
+    "step": 118,
+    "agent_id": "driver_5",
+    "agent_position": [
+      1,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          0,
+          7
+        ],
+        "payout": 17.6,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          0,
+          7
+        ],
+        "payout": 12.8,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 17.6,
+    "mean_visible_payout": 15.200000000000001,
+    "zone_completion_counts_before": [
+      2,
+      1,
+      3,
+      5
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0027",
+    "episode_seed": 784,
+    "step": 121,
+    "agent_id": "driver_2",
+    "agent_position": [
+      9,
+      1
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          0
+        ],
+        "payout": 15.2,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          9,
+          0
+        ],
+        "payout": 14.0,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 15.2,
+    "mean_visible_payout": 14.6,
+    "zone_completion_counts_before": [
+      2,
+      2,
+      3,
+      5
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0028",
+    "episode_seed": 784,
+    "step": 134,
+    "agent_id": "driver_6",
+    "agent_position": [
+      6,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          3
+        ],
+        "payout": 14.0,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          3,
+          4
+        ],
+        "payout": 12.8,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 13.4,
+    "zone_completion_counts_before": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0029",
+    "episode_seed": 785,
+    "step": 99,
+    "agent_id": "driver_2",
+    "agent_position": [
+      3,
+      4
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          3
+        ],
+        "payout": 11.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          2,
+          6
+        ],
+        "payout": 15.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      3,
+      1,
+      0
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0030",
+    "episode_seed": 785,
+    "step": 100,
+    "agent_id": "driver_2",
+    "agent_position": [
+      3,
+      4
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          3
+        ],
+        "payout": 11.6,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          6
+        ],
+        "payout": 12.8,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          3,
+          6
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          2,
+          6
+        ],
+        "payout": 15.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 15.2,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      3,
+      1,
+      0
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0031",
+    "episode_seed": 786,
+    "step": 76,
+    "agent_id": "driver_0",
+    "agent_position": [
+      2,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          1,
+          2
+        ],
+        "payout": 15.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          3,
+          4
+        ],
+        "payout": 10.4,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 10.4,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      1,
+      1,
+      3,
+      0
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0032",
+    "episode_seed": 786,
+    "step": 109,
+    "agent_id": "driver_6",
+    "agent_position": [
+      2,
+      7
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          0,
+          5
+        ],
+        "payout": 18.8,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          1,
+          7
+        ],
+        "payout": 11.6,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 11.6,
+    "mean_visible_payout": 15.2,
+    "zone_completion_counts_before": [
+      2,
+      2,
+      4,
+      1
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0033",
+    "episode_seed": 786,
+    "step": 132,
+    "agent_id": "driver_0",
+    "agent_position": [
+      5,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          3
+        ],
+        "payout": 15.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          4,
+          2
+        ],
+        "payout": 9.2,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 9.2,
+    "mean_visible_payout": 12.2,
+    "zone_completion_counts_before": [
+      2,
+      6,
+      5,
+      3
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0034",
+    "episode_seed": 786,
+    "step": 144,
+    "agent_id": "driver_2",
+    "agent_position": [
+      4,
+      7
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          1,
+          5
+        ],
+        "payout": 15.2,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          6
+        ],
+        "payout": 11.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      3,
+      6,
+      6,
+      3
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0035",
+    "episode_seed": 786,
+    "step": 145,
+    "agent_id": "driver_1",
+    "agent_position": [
+      8,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          6
+        ],
+        "payout": 11.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          7,
+          2
+        ],
+        "payout": 14.0,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          7,
+          5
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 15.2,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 13.7,
+    "zone_completion_counts_before": [
+      3,
+      6,
+      6,
+      3
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0036",
+    "episode_seed": 786,
+    "step": 145,
+    "agent_id": "driver_5",
+    "agent_position": [
+      8,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          6
+        ],
+        "payout": 11.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          7,
+          2
+        ],
+        "payout": 14.0,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          7,
+          5
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 15.2,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 13.7,
+    "zone_completion_counts_before": [
+      3,
+      6,
+      6,
+      3
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0037",
+    "episode_seed": 786,
+    "step": 147,
+    "agent_id": "driver_5",
+    "agent_position": [
+      8,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          5
+        ],
+        "payout": 14.0,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 15.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 14.6,
+    "zone_completion_counts_before": [
+      3,
+      6,
+      6,
+      4
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0038",
+    "episode_seed": 786,
+    "step": 149,
+    "agent_id": "driver_2",
+    "agent_position": [
+      7,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 15.2,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          7,
+          5
+        ],
+        "payout": 10.4,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 10.4,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      3,
+      6,
+      6,
+      4
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0039",
+    "episode_seed": 787,
+    "step": 87,
+    "agent_id": "driver_0",
+    "agent_position": [
+      2,
+      7
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          3,
+          8
+        ],
+        "payout": 17.6,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          5,
+          4
+        ],
+        "payout": 14.0,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 15.8,
+    "zone_completion_counts_before": [
+      3,
+      1,
+      1,
+      2
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0040",
+    "episode_seed": 787,
+    "step": 148,
+    "agent_id": "driver_2",
+    "agent_position": [
+      4,
+      1
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          0
+        ],
+        "payout": 15.2,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          7,
+          0
+        ],
+        "payout": 16.4,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 16.4,
+    "mean_visible_payout": 14.799999999999999,
+    "zone_completion_counts_before": [
+      6,
+      4,
+      7,
+      3
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0041",
+    "episode_seed": 788,
+    "step": 14,
+    "agent_id": "driver_1",
+    "agent_position": [
+      7,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          2
+        ],
+        "payout": 14.0,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          5,
+          4
+        ],
+        "payout": 9.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 11.6,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0042",
+    "episode_seed": 788,
+    "step": 15,
+    "agent_id": "driver_0",
+    "agent_position": [
+      7,
+      7
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          8
+        ],
+        "payout": 9.2,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          5,
+          4
+        ],
+        "payout": 9.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 9.2,
+    "mean_visible_payout": 9.2,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0043",
+    "episode_seed": 788,
+    "step": 130,
+    "agent_id": "driver_5",
+    "agent_position": [
+      6,
+      4
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          7,
+          2
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          9,
+          6
+        ],
+        "payout": 15.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 14.0,
+    "zone_completion_counts_before": [
+      2,
+      1,
+      4,
+      7
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0044",
+    "episode_seed": 788,
+    "step": 131,
+    "agent_id": "driver_5",
+    "agent_position": [
+      6,
+      4
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          2
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          9,
+          6
+        ],
+        "payout": 15.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 14.6,
+    "zone_completion_counts_before": [
+      2,
+      2,
+      4,
+      7
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0045",
+    "episode_seed": 788,
+    "step": 134,
+    "agent_id": "driver_1",
+    "agent_position": [
+      6,
+      6
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          9,
+          7
+        ],
+        "payout": 16.4,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          7,
+          4
+        ],
+        "payout": 11.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 16.4,
+    "mean_visible_payout": 14.0,
+    "zone_completion_counts_before": [
+      2,
+      2,
+      4,
+      7
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0046",
+    "episode_seed": 789,
+    "step": 121,
+    "agent_id": "driver_2",
+    "agent_position": [
+      2,
+      2
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          0,
+          2
+        ],
+        "payout": 9.2,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          0,
+          3
+        ],
+        "payout": 11.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 9.2,
+    "mean_visible_payout": 10.399999999999999,
+    "zone_completion_counts_before": [
+      4,
+      3,
+      2,
+      2
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0047",
+    "episode_seed": 790,
+    "step": 6,
+    "agent_id": "driver_7",
+    "agent_position": [
+      3,
+      4
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          3,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          6,
+          2
+        ],
+        "payout": 16.4,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 13.399999999999999,
+    "zone_completion_counts_before": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "zone_id_of_action": 0
+  },
+  {
+    "sample_id": "sample_0048",
+    "episode_seed": 790,
+    "step": 48,
+    "agent_id": "driver_2",
+    "agent_position": [
+      6,
+      4
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 12.8,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          4,
+          3
+        ],
+        "payout": 9.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 11.0,
+    "zone_completion_counts_before": [
+      1,
+      2,
+      0,
+      0
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0049",
+    "episode_seed": 790,
+    "step": 48,
+    "agent_id": "driver_6",
+    "agent_position": [
+      7,
+      5
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 12.8,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          4,
+          3
+        ],
+        "payout": 9.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 11.0,
+    "zone_completion_counts_before": [
+      1,
+      2,
+      0,
+      0
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0050",
+    "episode_seed": 790,
+    "step": 133,
+    "agent_id": "driver_4",
+    "agent_position": [
+      5,
+      5
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          5
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          8
+        ],
+        "payout": 11.6,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 12.2,
+    "zone_completion_counts_before": [
+      3,
+      4,
+      5,
+      1
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0051",
+    "episode_seed": 790,
+    "step": 139,
+    "agent_id": "driver_6",
+    "agent_position": [
+      6,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          5,
+          0
+        ],
+        "payout": 17.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          8,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 17.6,
+    "mean_visible_payout": 15.200000000000001,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      5,
+      1
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0052",
+    "episode_seed": 790,
+    "step": 142,
+    "agent_id": "driver_2",
+    "agent_position": [
+      5,
+      2
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 11.600000000000001,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      1
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0053",
+    "episode_seed": 790,
+    "step": 142,
+    "agent_id": "driver_6",
+    "agent_position": [
+      5,
+      0
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          8,
+          3
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 11.600000000000001,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      1
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0054",
+    "episode_seed": 790,
+    "step": 144,
+    "agent_id": "driver_5",
+    "agent_position": [
+      5,
+      2
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          5,
+          1
+        ],
+        "payout": 14.0,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 9.2,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 11.199999999999998,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      2
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0055",
+    "episode_seed": 790,
+    "step": 144,
+    "agent_id": "driver_6",
+    "agent_position": [
+      6,
+      3
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 0
+      },
+      {
+        "pickup": [
+          5,
+          1
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          8,
+          4
+        ],
+        "payout": 9.2,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 14.0,
+    "mean_visible_payout": 11.199999999999998,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      2
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0056",
+    "episode_seed": 790,
+    "step": 145,
+    "agent_id": "driver_3",
+    "agent_position": [
+      4,
+      2
+    ],
+    "action_taken": "REJECT_AND_IDLE",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          4,
+          4
+        ],
+        "payout": 11.6,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": null,
+    "mean_visible_payout": 11.0,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      2
+    ],
+    "zone_id_of_action": 2
+  },
+  {
+    "sample_id": "sample_0057",
+    "episode_seed": 790,
+    "step": 147,
+    "agent_id": "driver_5",
+    "agent_position": [
+      5,
+      4
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          6,
+          3
+        ],
+        "payout": 10.4,
+        "distance": 1
+      },
+      {
+        "pickup": [
+          2,
+          6
+        ],
+        "payout": 11.6,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          4,
+          4
+        ],
+        "payout": 12.8,
+        "distance": 1
+      }
+    ],
+    "chosen_offer_payout": 11.6,
+    "mean_visible_payout": 11.6,
+    "zone_completion_counts_before": [
+      3,
+      5,
+      6,
+      2
+    ],
+    "zone_id_of_action": 1
+  },
+  {
+    "sample_id": "sample_0058",
+    "episode_seed": 791,
+    "step": 88,
+    "agent_id": "driver_6",
+    "agent_position": [
+      4,
+      7
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          9
+        ],
+        "payout": 12.8,
+        "distance": 3
+      },
+      {
+        "pickup": [
+          6,
+          8
+        ],
+        "payout": 12.8,
+        "distance": 2
+      }
+    ],
+    "chosen_offer_payout": 12.8,
+    "mean_visible_payout": 12.8,
+    "zone_completion_counts_before": [
+      2,
+      3,
+      2,
+      0
+    ],
+    "zone_id_of_action": 3
+  },
+  {
+    "sample_id": "sample_0059",
+    "episode_seed": 791,
+    "step": 107,
+    "agent_id": "driver_2",
+    "agent_position": [
+      5,
+      7
+    ],
+    "action_taken": "ACCEPT_OFFER",
+    "visible_offers": [
+      {
+        "pickup": [
+          7,
+          8
+        ],
+        "payout": 14.0,
+        "distance": 2
+      },
+      {
+        "pickup": [
+          7,
+          4
+        ],
+        "payout": 10.4,
+        "distance": 3
+      }
+    ],
+    "chosen_offer_payout": 10.4,
+    "mean_visible_payout": 12.2,
+    "zone_completion_counts_before": [
+      2,
+      5,
+      2,
+      0
+    ],
+    "zone_id_of_action": 2
+  }
+]
