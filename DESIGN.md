@@ -56,7 +56,14 @@ This project frames an everyday delivery-dispatch scenario as a multi-agent RL e
 
 ---
 
-## 5. Required Expertise & Data Sources
+## 5. Deployment Safety & Rollout Protocol
+
+- Deployment gating: online canary rollout routing 2% of live dispatch traffic, scaling to 10% post-validation before full deployment.
+- Automated rollback triggers: automatic revert to centralized baseline if average delivery SLA degrades by >8% or zone coverage variance (Gini) exceeds 0.35 over a 15-minute rolling window.
+
+---
+
+## 6. Required Expertise & Data Sources
 
 - Expertise: logistics/dispatch operations, urban demand patterns, rubric design for judging agent decisions.
 - Data: public ride-hailing trip data (e.g., NYC TLC) as a proxy, with synthetic order generation calibrated per zone.
@@ -64,14 +71,14 @@ This project frames an everyday delivery-dispatch scenario as a multi-agent RL e
 
 ---
 
-## 6. Resourcing & Feasibility
+## 7. Resourcing & Feasibility
 
 - Estimated compute budget: $5K–$20K (moderate complexity).
 - Feasibility confidence: 4/5 (High) — a well-understood dispatch problem with abundant public transportation data to build on.
 
 ---
 
-## 7. Known Challenges & Mitigations
+## 8. Known Challenges & Mitigations
 
 - Defining "fairness" quantitatively → use coverage/Gini metrics, validated against a human-judgment rubric with a required Krippendorff's Alpha ≥ 0.7 across annotators before trusting it.
 - Balancing profit realism vs. the fairness objective → addressed by the intrinsic/extrinsic reward split above.
