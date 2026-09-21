@@ -5,10 +5,11 @@
 </p>
 
 <p align="center">
-  <img alt="tests" src="https://img.shields.io/badge/tests-62%20passing-34d399?style=for-the-badge">
+  <img alt="tests" src="https://img.shields.io/badge/tests-85%20passing-34d399?style=for-the-badge">
   <img alt="python" src="https://img.shields.io/badge/python-3.12-38bdf8?style=for-the-badge">
   <img alt="framework" src="https://img.shields.io/badge/RL-PettingZoo%20%2B%20RLlib-a78bfa?style=for-the-badge">
   <img alt="data" src="https://img.shields.io/badge/data-real%20NYC%20TLC-fbbf24?style=for-the-badge">
+  <img alt="phase2" src="https://img.shields.io/badge/Phase%202-QA%20gate%20%2B%20fine--tuning%20%2B%20scaling%20%2B%20benchmark-f472b6?style=for-the-badge">
 </p>
 
 A multi-agent reinforcement learning (MARL) environment and evaluation
@@ -35,6 +36,7 @@ claim was checked.
 - [Evaluation Suite](#evaluation-suite)
 - [Human Annotation Pipeline](#human-annotation-pipeline)
 - [Pilot Study Results](#pilot-study-results)
+- [Phase 2: Automated QA, Fine-Tuning, Scalable Rollouts, and a Reusable Benchmark](#phase-2-automated-qa-fine-tuning-scalable-rollouts-and-a-reusable-benchmark)
 - [Verification & Rigor](#verification--rigor)
 - [Project Structure](#project-structure)
 - [Quick Start](#quick-start)
@@ -210,6 +212,102 @@ numbers above are from the corrected pipeline.
 
 ---
 
+## Phase 2: Automated QA, Fine-Tuning, Scalable Rollouts, and a Reusable Benchmark
+
+Phase 1 (above) built the environment, the reward architecture, the
+evaluation suite, and the human-annotation pipeline. Phase 2 extends
+that same codebase with four additions, each a literal, working
+implementation rather than a design note:
+
+### 1. Automated evaluation / QA quality gate
+
+The original pipeline only had *human* evaluation (Krippendorff's
+Alpha / Cohen's Kappa, above) — slow and expensive to run on every
+training iteration. [`evaluation/quality_gate.py`](evaluation/quality_gate.py)
+adds an automated pre-filter that watches three run-health signals —
+**fleet-wide rejection rate**, **zone Gini**, and **completion ratio
+vs. the centralized-optimal baseline** — against documented
+thresholds, and flags a run *before* it is ever queued for a human
+rater, mirroring the same `meets_threshold` pattern already used for
+the human-agreement gate. Runnable directly:
+
+```bash
+python -m evaluation.run_quality_gate --n-episodes 10
+```
+
+Verified on the random-policy baseline, which correctly gets
+**FLAGGED** (rejection rate ≈ 45–48%, well above the 0.40 threshold —
+see [`BENCHMARK_CARD.md`](BENCHMARK_CARD.md) for the full numbers):
+this is the gate working as intended, catching a degenerate policy
+before it wastes a human rater's time.
+
+### 2. Fine-tuning an existing checkpoint on a new scenario
+
+[`training/finetune_ppo.py`](training/finetune_ppo.py) takes an
+already-trained PPO checkpoint (from `training/train_ppo.py`) and
+continues training it on
+[`training/scenarios.py`](training/scenarios.py)'s **surge scenario**
+— a sustained ~70% increase in order-arrival rate
+(`order_spawn_rate`: 0.35 → 0.60), a genuine distribution shift, not a
+relabeled copy of the baseline config. Weight transfer
+(`algo.get_weights()` → `algo.set_weights()`) is used deliberately
+instead of `Algorithm.from_checkpoint()`, because the latter also
+restores the *original* (non-surge) environment config, which would
+defeat the point. Verified end-to-end in this repository: a real
+3-iteration baseline checkpoint, fine-tuned for 3 more iterations
+under the surge scenario — reward history saved at
+[`benchmark_results/finetune_summary.json`](benchmark_results/finetune_summary.json).
+
+```bash
+python -m training.train_ppo --iterations 3 --checkpoint-dir checkpoints/baseline
+python -m training.finetune_ppo --baseline-checkpoint checkpoints/baseline/iter_3 \
+    --iterations 3 --checkpoint-dir checkpoints/finetuned
+```
+
+### 3. Scalable episode collection via distributed rollout workers
+
+[`evaluation/parallel_rollout.py`](evaluation/parallel_rollout.py)
+reuses RLlib's own distributed rollout-worker pool
+(`algo.env_runner_group.foreach_env_runner(..., local_env_runner=False)`)
+to collect a batch of episodes across multiple remote workers
+concurrently, instead of `evaluation/episode_runner.py`'s one-episode-
+at-a-time collection. This is a ready-made RLlib feature — no custom
+multiprocessing layer — timed directly rather than estimated:
+
+```bash
+python -m evaluation.run_throughput_benchmark --worker-counts 1 2
+```
+
+**Real, measured result on this repository's 2-CPU environment**
+(saved at [`benchmark_results/throughput.json`](benchmark_results/throughput.json)):
+
+| Rollout workers | Episodes collected | Wall-clock | Episodes/sec | Speedup |
+|---|---|---|---|---|
+| 1 | 1 | 0.481s | 2.08 | 1.00x |
+| 2 | 2 | 0.499s | 4.00 | **1.93x** |
+
+Near-linear scaling, as expected: two rollout workers sampling
+concurrently on two CPUs. The mechanism scales to however many rollout
+workers a larger machine can support — `training/train_ppo.py` already
+exposes `--n-rollout-workers` for exactly this.
+
+### 4. A reusable benchmark package
+
+[`benchmark/`](benchmark/) packages the evaluation suite as a fixed,
+versioned benchmark rather than a personal, ad-hoc evaluation script:
+three named tasks with pinned `EnvConfig`s and seeds
+(`benchmark/tasks.py`), a runner that scores any policy against them
+(`benchmark/run_benchmark.py`), documented random-baseline scores, and
+a full model-card-style write-up — **[BENCHMARK_CARD.md](BENCHMARK_CARD.md)**
+— explaining what each task measures, how to run it, and its
+limitations.
+
+```bash
+python -m benchmark.run_benchmark --output benchmark_results/my_run.json
+```
+
+---
+
 ## Verification & Rigor
 
 This project was built with an explicit "no unverified claims" policy
@@ -224,7 +322,9 @@ tests:
 - **Zero partial-observability violations** -- checked by direct instrumentation of every visible offer at every step of a live 50-step episode, not just a static unit test
 - **RLlib checkpoint save -> reload -> inference cycle** verified end-to-end in a fresh process (and a real API-compatibility bug was found and fixed in the process)
 - **The NYC TLC calibration is reproducible** -- re-running the extraction script against the raw source data regenerates the exact hardcoded constants
-- **62 automated tests**, full suite runs in under 3 seconds, zero flaky dependencies (no live API keys, no network access required)
+- **The fine-tuning weight-transfer pipeline was run end-to-end for real** -- a real checkpoint trained, weights transferred into a differently-configured (surge-demand) PPO algorithm, and training continued -- not just described (`benchmark_results/finetune_summary.json`)
+- **The parallel-rollout throughput claim is a real, timed measurement** -- not an estimate -- on this repository's own 2-CPU environment (`benchmark_results/throughput.json`)
+- **85 automated tests** (84 run by default in under 6 seconds; 1 additional Ray-backed integration test, excluded from the default run since it spins up a real Ray process, runnable via `pytest tests/ -m ray`) -- zero flaky dependencies (no live API keys, no network access required) for the default suite
 
 ---
 
@@ -247,14 +347,23 @@ marl-fleet-fairness-eval/
 │   └── tlc_extract_calibration.py  # Reproducible extraction script
 ├── training/
 │   ├── rllib_env_wrapper.py        # PettingZoo -> RLlib MultiAgentEnv adapter
-│   └── train_ppo.py                # Shared-policy PPO training script
+│   ├── train_ppo.py                # Shared-policy PPO training script
+│   ├── scenarios.py                # Phase 2: named scenario configs (e.g. surge demand)
+│   └── finetune_ppo.py             # Phase 2: continue training an existing checkpoint on a new scenario
 ├── evaluation/
 │   ├── centralized_baseline.py     # Hungarian-algorithm optimal baseline
 │   ├── episode_runner.py           # Collects raw per-decision data
 │   ├── metrics.py                  # Efficiency / fairness / decision-quality / robustness
 │   ├── robustness.py               # Demand-spike stress testing
 │   ├── agreement_stats.py          # Krippendorff's Alpha + Cohen's Kappa
-│   └── report.py                   # Full consolidated evaluation report
+│   ├── report.py                   # Full consolidated evaluation report
+│   ├── quality_gate.py             # Phase 2: automated QA pre-filter (before human review)
+│   ├── run_quality_gate.py         # Phase 2: CLI for the quality gate
+│   ├── parallel_rollout.py         # Phase 2: distributed rollout-worker episode collection
+│   └── run_throughput_benchmark.py # Phase 2: CLI for the parallel-rollout throughput benchmark
+├── benchmark/                      # Phase 2: reusable, versioned benchmark suite
+│   ├── tasks.py                      # Fixed task configs (standard-v1, surge-v1, short-horizon-v1)
+│   └── run_benchmark.py              # Scores any policy against every task
 ├── annotation_app/
 │   ├── app.py                      # Streamlit human-rating UI
 │   ├── sample_generator.py         # Real decision-snapshot collection
@@ -262,8 +371,9 @@ marl-fleet-fairness-eval/
 │   └── generate_samples.py         # CLI to build the sample set
 ├── pilot_study/
 │   └── run_pilot.py                # Documented pilot annotation run
+├── benchmark_results/              # Phase 2: saved real run outputs (baseline scores, throughput, fine-tune summary)
 ├── assets/diagrams/                # Diagram generation scripts (this README's images)
-└── tests/                          # 62 tests covering every module above
+└── tests/                          # 85 tests covering every module above
 ```
 
 ---
@@ -274,8 +384,11 @@ marl-fleet-fairness-eval/
 # Install dependencies
 pip install -r requirements.txt
 
-# Run the full test suite (no API keys, no network access needed)
+# Run the default (fast) test suite -- no API keys, no network access needed
 pytest tests/ -v
+
+# Also run the 1 additional Ray-backed integration test (slower -- spins up real Ray)
+pytest tests/ -m ray -v
 
 # Train a shared-policy PPO agent
 python -m training.train_ppo --iterations 50
@@ -297,6 +410,20 @@ streamlit run annotation_app/app.py
 
 # Run the documented pilot study
 python -m pilot_study.run_pilot
+
+# --- Phase 2 ---
+
+# Automated QA quality gate (flags a run before it reaches human review)
+python -m evaluation.run_quality_gate --n-episodes 10
+
+# Fine-tune an existing checkpoint on the surge-demand scenario
+python -m training.finetune_ppo --baseline-checkpoint checkpoints/baseline/iter_50 --iterations 20
+
+# Parallel-rollout throughput benchmark
+python -m evaluation.run_throughput_benchmark --worker-counts 1 2 4
+
+# Run the reusable benchmark suite
+python -m benchmark.run_benchmark --output benchmark_results/my_run.json
 ```
 
 ---
@@ -307,8 +434,10 @@ Documented explicitly, since knowing what was intentionally cut is as
 informative as what was built:
 
 - **Real human annotators** -- see [Pilot Study Results](#pilot-study-results) above. The pipeline is production-ready; the raters are not yet real people.
-- **A learned, converged policy checkpoint is not shipped** -- the RLlib training pipeline is verified end-to-end (train -> save -> reload -> inference), but full convergence requires a multi-hour training run better suited to a GPU-backed environment than this repository's CI-friendly footprint.
+- **A learned, converged policy checkpoint is not shipped** -- the RLlib training pipeline (and, as of Phase 2, the fine-tuning pipeline) is verified end-to-end (train -> save -> reload -> inference; weight-transfer -> continue training on a new scenario), but full convergence requires a multi-hour training run better suited to a GPU-backed environment than this repository's CI-friendly footprint. The Phase 2 fine-tuning and benchmark numbers documented above are real outputs of short (2-CPU-friendly) runs, honestly labeled as such -- not converged-policy scores.
+- **The parallel-rollout throughput benchmark is capped at this repository's 2-CPU environment** -- the measured 1.93x speedup at 2 workers is real, but scaling to more workers (4, 8, ...) was not measured here since more CPUs were not available; `evaluation/run_throughput_benchmark.py --worker-counts` is written to scale to however many a given machine has.
 - **A dedicated vector/GIS routing engine** -- the city grid uses Chebyshev distance, not real street-network routing, consistent with the "lite" scope of the originating specification.
 - **Weather/event-driven demand spikes are modeled as a uniform multiplier**, not a genuinely separate stochastic process -- sufficient to test robustness-under-load, not a full weather simulation.
+- **The benchmark suite (`benchmark/`) ships 3 tasks**, not a large public leaderboard -- see [`BENCHMARK_CARD.md`](BENCHMARK_CARD.md)'s "Limitations" section.
 
-> **Note:** See **[DESIGN.md](./DESIGN.md)** for the full environment design -- motivation, reward architecture, and evaluation protocol.
+> **Note:** See **[DESIGN.md](./DESIGN.md)** for the full environment design -- motivation, reward architecture, and evaluation protocol -- and **[BENCHMARK_CARD.md](./BENCHMARK_CARD.md)** for the Phase 2 reusable benchmark suite's task definitions, documented baseline scores, and limitations.

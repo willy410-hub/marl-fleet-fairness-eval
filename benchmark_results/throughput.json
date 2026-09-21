@@ -1,0 +1,16 @@
+[
+  {
+    "n_rollout_workers": 1,
+    "wall_clock_seconds": 0.4814396529999385,
+    "total_episodes": 1,
+    "total_env_steps": 200,
+    "episodes_per_second": 2.0771035243333555
+  },
+  {
+    "n_rollout_workers": 2,
+    "wall_clock_seconds": 0.49949046500000804,
+    "total_episodes": 2,
+    "total_env_steps": 400,
+    "episodes_per_second": 4.004080438252145
+  }
+]

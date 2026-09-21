@@ -1,0 +1,260 @@
+{
+  "standard-v1": {
+    "task_id": "standard-v1",
+    "evaluation": {
+      "n_episodes": 10,
+      "efficiency": {
+        "policy_completions": 377,
+        "baseline_completions": 548,
+        "completion_ratio": 0.6879562043795621
+      },
+      "fairness": {
+        "zone_gini": 0.0643236074270557,
+        "rejection_rate_low_demand_zone": 0.06498422712933755,
+        "zone_completion_counts": [
+          117,
+          87,
+          88,
+          85
+        ]
+      },
+      "decision_quality": {
+        "value_sensitivity_correlation": -0.018581362103324364,
+        "n_decisions": 886
+      },
+      "robustness_2x_spike": {
+        "normal_completions": 40,
+        "spike_completions": 71,
+        "degradation_ratio": 1.775
+      },
+      "robustness_2_5x_spike": {
+        "normal_completions": 32,
+        "spike_completions": 82,
+        "degradation_ratio": 2.5625
+      },
+      "per_episode_completions": [
+        33,
+        41,
+        33,
+        40,
+        28,
+        43,
+        41,
+        38,
+        40,
+        40
+      ],
+      "per_episode_rewards": [
+        406.1015217493096,
+        1424.2451797893195,
+        1223.2372680776691,
+        1358.3733457586627,
+        2331.4492126191503,
+        1826.9923211252926,
+        2607.66771366731,
+        936.4181470572094,
+        1168.8685345599854,
+        2132.023884199694
+      ]
+    },
+    "quality_gate": {
+      "run_id": "standard-v1",
+      "passed": false,
+      "checks": [
+        {
+          "name": "rejection_rate",
+          "passed": false,
+          "value": 0.451685393258427,
+          "threshold": 0.4,
+          "description": "Fleet-wide fraction of offers rejected -- a spike usually means the policy is idling instead of dispatching (training regression or degenerate policy)."
+        },
+        {
+          "name": "zone_gini",
+          "passed": true,
+          "value": 0.04110512129380054,
+          "threshold": 0.5,
+          "description": "Gini coefficient over zone completion counts -- a spike means coverage has collapsed onto a subset of the city, the primary failure mode this project targets."
+        },
+        {
+          "name": "completion_ratio_vs_baseline",
+          "passed": true,
+          "value": 0.677007299270073,
+          "threshold": 0.5,
+          "description": "Policy completions as a fraction of the centralized-optimal baseline -- too low means the run is not yet worth a human rater's time."
+        }
+      ]
+    }
+  },
+  "surge-v1": {
+    "task_id": "surge-v1",
+    "evaluation": {
+      "n_episodes": 10,
+      "efficiency": {
+        "policy_completions": 631,
+        "baseline_completions": 878,
+        "completion_ratio": 0.7186788154897494
+      },
+      "fairness": {
+        "zone_gini": 0.04635499207606973,
+        "rejection_rate_low_demand_zone": 0.05517762660619804,
+        "zone_completion_counts": [
+          148,
+          142,
+          175,
+          166
+        ]
+      },
+      "decision_quality": {
+        "value_sensitivity_correlation": -0.020353920337275268,
+        "n_decisions": 1448
+      },
+      "robustness_2x_spike": {
+        "normal_completions": 66,
+        "spike_completions": 98,
+        "degradation_ratio": 1.4848484848484849
+      },
+      "robustness_2_5x_spike": {
+        "normal_completions": 60,
+        "spike_completions": 103,
+        "degradation_ratio": 1.7166666666666666
+      },
+      "per_episode_completions": [
+        67,
+        57,
+        67,
+        69,
+        61,
+        61,
+        53,
+        64,
+        62,
+        70
+      ],
+      "per_episode_rewards": [
+        2937.4308770860266,
+        2545.904116275774,
+        2650.582047355907,
+        2688.7495852648944,
+        2620.7361772410322,
+        3116.4582195160137,
+        1222.6011707415603,
+        2254.8033528164215,
+        2976.8266163098,
+        2558.481917171083
+      ]
+    },
+    "quality_gate": {
+      "run_id": "surge-v1",
+      "passed": false,
+      "checks": [
+        {
+          "name": "rejection_rate",
+          "passed": false,
+          "value": 0.40360240160106736,
+          "threshold": 0.4,
+          "description": "Fleet-wide fraction of offers rejected -- a spike usually means the policy is idling instead of dispatching (training regression or degenerate policy)."
+        },
+        {
+          "name": "zone_gini",
+          "passed": true,
+          "value": 0.016457680250783698,
+          "threshold": 0.5,
+          "description": "Gini coefficient over zone completion counts -- a spike means coverage has collapsed onto a subset of the city, the primary failure mode this project targets."
+        },
+        {
+          "name": "completion_ratio_vs_baseline",
+          "passed": true,
+          "value": 0.7266514806378133,
+          "threshold": 0.5,
+          "description": "Policy completions as a fraction of the centralized-optimal baseline -- too low means the run is not yet worth a human rater's time."
+        }
+      ]
+    }
+  },
+  "short-horizon-v1": {
+    "task_id": "short-horizon-v1",
+    "evaluation": {
+      "n_episodes": 10,
+      "efficiency": {
+        "policy_completions": 42,
+        "baseline_completions": 67,
+        "completion_ratio": 0.6268656716417911
+      },
+      "fairness": {
+        "zone_gini": 0.21428571428571427,
+        "rejection_rate_low_demand_zone": 0.12949640287769784,
+        "zone_completion_counts": [
+          15,
+          10,
+          13,
+          4
+        ]
+      },
+      "decision_quality": {
+        "value_sensitivity_correlation": -0.011711961129101356,
+        "n_decisions": 118
+      },
+      "robustness_2x_spike": {
+        "normal_completions": 1,
+        "spike_completions": 11,
+        "degradation_ratio": 11.0
+      },
+      "robustness_2_5x_spike": {
+        "normal_completions": 3,
+        "spike_completions": 16,
+        "degradation_ratio": 5.333333333333333
+      },
+      "per_episode_completions": [
+        3,
+        8,
+        3,
+        6,
+        3,
+        6,
+        4,
+        1,
+        4,
+        4
+      ],
+      "per_episode_rewards": [
+        781.0000000000007,
+        50.73142857142864,
+        375.888888888889,
+        -305.83555555555546,
+        474.66666666666646,
+        551.6933333333335,
+        338.0,
+        -72.0,
+        477.33333333333303,
+        628.2222222222222
+      ]
+    },
+    "quality_gate": {
+      "run_id": "short-horizon-v1",
+      "passed": false,
+      "checks": [
+        {
+          "name": "rejection_rate",
+          "passed": false,
+          "value": 0.48412698412698413,
+          "threshold": 0.4,
+          "description": "Fleet-wide fraction of offers rejected -- a spike usually means the policy is idling instead of dispatching (training regression or degenerate policy)."
+        },
+        {
+          "name": "zone_gini",
+          "passed": true,
+          "value": 0.17857142857142858,
+          "threshold": 0.5,
+          "description": "Gini coefficient over zone completion counts -- a spike means coverage has collapsed onto a subset of the city, the primary failure mode this project targets."
+        },
+        {
+          "name": "completion_ratio_vs_baseline",
+          "passed": true,
+          "value": 0.7313432835820896,
+          "threshold": 0.5,
+          "description": "Policy completions as a fraction of the centralized-optimal baseline -- too low means the run is not yet worth a human rater's time."
+        }
+      ]
+    }
+  }
+}

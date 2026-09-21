@@ -1,0 +1,18 @@
+{
+  "baseline_checkpoint": "checkpoints/baseline/iter_3 (locally trained; not shipped in the repo -- see 'What Was Deliberately Left Out of Scope')",
+  "scenario": "surge",
+  "surge_order_spawn_rate": 0.6,
+  "base_order_spawn_rate": 0.35,
+  "iterations": 3,
+  "baseline_training_reward_history": [
+    2045.6796041641223,
+    2229.204103249852,
+    2795.7213443945247
+  ],
+  "finetune_reward_history": [
+    2689.2618917750233,
+    2656.476567761302,
+    2321.1216327199104
+  ],
+  "note": "Both runs were executed end-to-end in this repository's CI-friendly footprint (2 CPUs, 1 rollout worker, train_batch_size=2000, 3 iterations each) as a correctness/integration demonstration, not a converged benchmark -- see the 'Not a converged policy' scope note in the README. The fine-tuning run's reward is noisy over only 3 iterations (as expected for PPO on a freshly-shifted distribution) and is not yet expected to exceed the baseline's -- what this demonstrates is that weight transfer + continued training onto a harder, genuinely different demand distribution runs correctly end-to-end, not that 3 iterations is enough to fully re-converge."
+}
