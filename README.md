@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img alt="tests" src="https://img.shields.io/badge/tests-85%20passing-34d399?style=for-the-badge">
+  <img alt="tests" src="https://img.shields.io/badge/tests-95%20passing-34d399?style=for-the-badge">
   <img alt="python" src="https://img.shields.io/badge/python-3.12-38bdf8?style=for-the-badge">
   <img alt="framework" src="https://img.shields.io/badge/RL-PettingZoo%20%2B%20RLlib-a78bfa?style=for-the-badge">
   <img alt="data" src="https://img.shields.io/badge/data-real%20NYC%20TLC-fbbf24?style=for-the-badge">
@@ -36,7 +36,7 @@ claim was checked.
 - [Evaluation Suite](#evaluation-suite)
 - [Human Annotation Pipeline](#human-annotation-pipeline)
 - [Pilot Study Results](#pilot-study-results)
-- [Phase 2: Automated QA, Fine-Tuning, Scalable Rollouts, and a Reusable Benchmark](#phase-2-automated-qa-fine-tuning-scalable-rollouts-and-a-reusable-benchmark)
+- [Phase 2: Automated QA, Fine-Tuning, Scalable Rollouts, a Reusable Benchmark, and Synthetic Scenario Generation](#phase-2-automated-qa-fine-tuning-scalable-rollouts-a-reusable-benchmark-and-synthetic-scenario-generation)
 - [Verification & Rigor](#verification--rigor)
 - [Project Structure](#project-structure)
 - [Quick Start](#quick-start)
@@ -424,7 +424,7 @@ marl-fleet-fairness-eval/
 │   └── run_pilot.py                # Documented pilot annotation run
 ├── benchmark_results/              # Phase 2: saved real run outputs (baseline scores, throughput, fine-tune summary)
 ├── assets/diagrams/                # Diagram generation scripts (this README's images)
-└── tests/                          # 85 tests covering every module above
+└── tests/                          # 95 tests covering every module above
 ```
 
 ---
@@ -475,6 +475,10 @@ python -m evaluation.run_throughput_benchmark --worker-counts 1 2 4
 
 # Run the reusable benchmark suite
 python -m benchmark.run_benchmark --output benchmark_results/my_run.json
+
+# Generate a synthetic training-scenario batch, then train a curriculum across it
+python -m training.generate_synthetic_scenarios --n-scenarios 20 --seed 42 --output benchmark_results/synthetic_scenarios.json
+python -m training.train_ppo_curriculum --n-scenarios 5 --iterations-per-scenario 2 --checkpoint-dir checkpoints/curriculum
 ```
 
 ---
@@ -490,5 +494,6 @@ informative as what was built:
 - **A dedicated vector/GIS routing engine** -- the city grid uses Chebyshev distance, not real street-network routing, consistent with the "lite" scope of the originating specification.
 - **Weather/event-driven demand spikes are modeled as a uniform multiplier**, not a genuinely separate stochastic process -- sufficient to test robustness-under-load, not a full weather simulation.
 - **The benchmark suite (`benchmark/`) ships 3 tasks**, not a large public leaderboard -- see [`BENCHMARK_CARD.md`](BENCHMARK_CARD.md)'s "Limitations" section.
+- **The synthetic scenario generator only perturbs scalar economic/demand-volume parameters** -- it never changes grid size, agent count, or the real demand curve's shape, so it produces variety within the existing calibrated environment, not entirely novel environment topologies.
 
 > **Note:** See **[DESIGN.md](./DESIGN.md)** for the full environment design -- motivation, reward architecture, and evaluation protocol -- and **[BENCHMARK_CARD.md](./BENCHMARK_CARD.md)** for the Phase 2 reusable benchmark suite's task definitions, documented baseline scores, and limitations.
