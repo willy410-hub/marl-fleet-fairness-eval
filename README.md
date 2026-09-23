@@ -5,11 +5,12 @@
 </p>
 
 <p align="center">
-  <img alt="tests" src="https://img.shields.io/badge/tests-95%20passing-34d399?style=for-the-badge">
+  <img alt="tests" src="https://img.shields.io/badge/tests-125%20passing-34d399?style=for-the-badge">
   <img alt="python" src="https://img.shields.io/badge/python-3.12-38bdf8?style=for-the-badge">
   <img alt="framework" src="https://img.shields.io/badge/RL-PettingZoo%20%2B%20RLlib-a78bfa?style=for-the-badge">
   <img alt="data" src="https://img.shields.io/badge/data-real%20NYC%20TLC-fbbf24?style=for-the-badge">
   <img alt="phase2" src="https://img.shields.io/badge/Phase%202-QA%20gate%20%2B%20fine--tuning%20%2B%20scaling%20%2B%20benchmark-f472b6?style=for-the-badge">
+  <img alt="phase2b" src="https://img.shields.io/badge/Phase%202-safety%20shield%20%2B%20statistical%20rigor%20%2B%20overfitting%20check-60a5fa?style=for-the-badge">
 </p>
 
 A multi-agent reinforcement learning (MARL) environment and evaluation
@@ -354,6 +355,98 @@ fields are never touched, that the real demand shape is preserved, and
 that every generated config builds a genuine, working
 `FleetDispatchEnv`.
 
+### 6. Rule-based safety shield (hard-constraint enforcement)
+
+[`env/safety_shield.py`](env/safety_shield.py) makes constraint
+enforcement explicit and, in one case, genuinely new — rather than
+implicit and reward-shaped only. It handles two different kinds of
+constraint on purpose, because they are not the same thing:
+
+- **Accept-offer legality** (order already claimed, or the driver is
+  already at `max_active_orders_per_agent`). `FleetDispatchEnv`
+  already prevents this from having any effect — `compute_action_mask`
+  exposes that existing invariant as an explicit, checkable boolean
+  mask over the action space, so a policy or an evaluator can inspect
+  *which* actions are legal before one is taken, instead of the
+  guarantee being buried inside a private no-op branch.
+- **The "unsafe shortcut" move.** Today this is a genuinely *soft*
+  constraint: `env/rewards.py`'s `unsafe_shortcut_penalty` always lets
+  it through and only makes it costly. `compute_action_mask(...,
+  disallow_shortcuts=True)` turns that into a *hard* rule: every
+  shortcut action is masked illegal outright, and
+  `ShieldedActionFn` guarantees zero of them ever reach the
+  environment, whatever the wrapped policy proposes. This is the
+  concrete difference between "the reward discourages it" and "a rule
+  forbids it," made runnable rather than just described.
+
+`ShieldedActionFn` is a drop-in wrapper around any existing
+`ActionFn`, so a shielded policy can be scored with the exact same
+`evaluation.report.evaluate_policy` / `benchmark.run_benchmark`
+machinery as an unshielded one:
+
+```bash
+python -m evaluation.run_shielded_evaluation --n-episodes 5
+```
+
+**What this is not:** a CMDP/Lagrangian constrained-optimization
+method. A Lagrangian approach learns a dual multiplier that
+dynamically re-weights a soft penalty until an expected-violation
+target is met, which is a different, complementary technique to an
+outright rule — it is not implemented here, and is called out as a
+natural next step rather than something this repository claims to do.
+
+### 7. Statistically rigorous benchmark scoring
+
+[`benchmark/statistics.py`](benchmark/statistics.py) and
+[`benchmark/run_benchmark_replicated.py`](benchmark/run_benchmark_replicated.py)
+address a real gap in addition 4's benchmark suite: every task ran
+once, under one fixed seed range, and reported a single point number.
+That controls for episode-to-episode noise within a run, but not for
+"was this seed range itself favorable." `run_benchmark_replicated.py`
+re-runs each task several times under independent, non-overlapping
+seed ranges and aggregates the results into a Student's-t confidence
+interval per headline metric — wider, more honest intervals than a
+normal approximation at the small replicate counts this is actually
+run at.
+
+On top of that, `crisp_pass()` defines an explicit, documented pass/fail
+rule instead of eyeballing a mean: a task only **crisply** clears the
+quality gate's own `MIN_COMPLETION_RATIO_VS_RANDOM` threshold
+(`evaluation/quality_gate.py`) when the confidence interval's *lower*
+bound clears it, with a minimum replicate count enforced — a policy
+that clears the threshold on average but with a wide, straddling
+interval is correctly reported as not yet a crisp pass.
+
+```bash
+python -m benchmark.run_benchmark_replicated --n-replicates 5 \
+    --output benchmark_results/random_baseline_replicated.json
+```
+
+### 8. Simulator-overfitting / generalization-gap detection
+
+[`evaluation/generalization_gap.py`](evaluation/generalization_gap.py)
+answers a question the existing evaluation suite never asked: does a
+policy's score hold up on scenarios it wasn't tuned against, or does it
+only look good on the exact base distribution? It reuses addition 5's
+synthetic-scenario generator as a held-out distribution, and compares
+`completion_ratio` (already normalized against a *per-scenario*
+centralized-optimal baseline, so harder scenarios aren't penalized
+just for being harder) on the base scenario against the mean
+`completion_ratio` across a batch of synthetic scenarios. A gap beyond
+a documented threshold (`DEFAULT_GAP_THRESHOLD = 0.15`) flags the
+policy as likely overfit to the base distribution rather than
+genuinely robust.
+
+```bash
+python -m evaluation.run_generalization_check --n-synthetic-scenarios 20 \
+    --output benchmark_results/generalization_check.json
+```
+
+The pure classification logic (`classify_generalization_gap`) is unit
+tested independently of any environment rollout, and a full
+end-to-end run (real synthetic scenarios, real `evaluate_policy` calls)
+is covered by `tests/test_generalization_gap.py`.
+
 ---
 
 ## Verification & Rigor
@@ -372,7 +465,8 @@ tests:
 - **The NYC TLC calibration is reproducible** -- re-running the extraction script against the raw source data regenerates the exact hardcoded constants
 - **The fine-tuning weight-transfer pipeline was run end-to-end for real** -- a real checkpoint trained, weights transferred into a differently-configured (surge-demand) PPO algorithm, and training continued -- not just described (`benchmark_results/finetune_summary.json`)
 - **The parallel-rollout throughput claim is a real, timed measurement** -- not an estimate -- on this repository's own 2-CPU environment (`benchmark_results/throughput.json`)
-- **95 automated tests** (94 run by default in under 6 seconds, including 10 covering the synthetic scenario generator's reproducibility, documented perturbation bounds, and untouched structural fields; 1 additional Ray-backed integration test, excluded from the default run since it spins up a real Ray process, runnable via `pytest tests/ -m ray`) -- zero flaky dependencies (no live API keys, no network access required) for the default suite
+- **125 automated tests** (124 run by default in under 6 seconds, including 10 covering the synthetic scenario generator's reproducibility and 30 covering the three latest additions -- the safety shield's hard-constraint guarantees, the confidence-interval/crisp-pass-verdict statistics, and the generalization-gap check's pure classification logic *and* a full real-rollout end-to-end run; 1 additional Ray-backed integration test, excluded from the default run since it spins up a real Ray process, runnable via `pytest tests/ -m ray`) -- zero flaky dependencies (no live API keys, no network access required) for the default suite
+- **The safety shield, replicated-benchmark, and generalization-gap additions were each run for real, not just unit tested** -- `evaluation.run_shielded_evaluation` (`benchmark_results/shielded_vs_unshielded.json`: 8,102 real shield overrides recorded over 5 episodes), `benchmark.run_benchmark_replicated` (`benchmark_results/random_baseline_replicated.json`: real 5-replicate confidence intervals for every fixed task), and `evaluation.run_generalization_check` (`benchmark_results/generalization_check.json`: a real 20-scenario generalization-gap measurement, 0.0185 -- well under the 0.15 threshold -- for the random policy)
 
 ---
 
@@ -389,7 +483,8 @@ marl-fleet-fairness-eval/
 │   ├── actions.py                  # 13-action discrete action space
 │   ├── fairness_metrics.py         # Gini coefficient + zone coverage variance
 │   ├── rewards.py                  # r = r_ext + omega*r_int, + 3 penalties
-│   └── fleet_env.py                # The full ParallelEnv
+│   ├── fleet_env.py                # The full ParallelEnv
+│   └── safety_shield.py            # Phase 2: rule-based hard-constraint action mask + shield
 ├── data/
 │   ├── tlc_calibration.py          # Real NYC TLC-derived constants
 │   └── tlc_extract_calibration.py  # Reproducible extraction script
@@ -411,10 +506,15 @@ marl-fleet-fairness-eval/
 │   ├── quality_gate.py             # Phase 2: automated QA pre-filter (before human review)
 │   ├── run_quality_gate.py         # Phase 2: CLI for the quality gate
 │   ├── parallel_rollout.py         # Phase 2: distributed rollout-worker episode collection
-│   └── run_throughput_benchmark.py # Phase 2: CLI for the parallel-rollout throughput benchmark
+│   ├── run_throughput_benchmark.py # Phase 2: CLI for the parallel-rollout throughput benchmark
+│   ├── run_shielded_evaluation.py  # Phase 2: CLI comparing shielded vs. unshielded policy behavior
+│   ├── generalization_gap.py       # Phase 2: simulator-overfitting / generalization-gap diagnostic
+│   └── run_generalization_check.py # Phase 2: CLI for the generalization-gap check
 ├── benchmark/                      # Phase 2: reusable, versioned benchmark suite
 │   ├── tasks.py                      # Fixed task configs (standard-v1, surge-v1, short-horizon-v1)
-│   └── run_benchmark.py              # Scores any policy against every task
+│   ├── run_benchmark.py              # Scores any policy against every task
+│   ├── statistics.py                 # Phase 2: confidence intervals + crisp pass/fail aggregation
+│   └── run_benchmark_replicated.py   # Phase 2: multi-replicate statistically rigorous scoring
 ├── annotation_app/
 │   ├── app.py                      # Streamlit human-rating UI
 │   ├── sample_generator.py         # Real decision-snapshot collection
@@ -424,7 +524,7 @@ marl-fleet-fairness-eval/
 │   └── run_pilot.py                # Documented pilot annotation run
 ├── benchmark_results/              # Phase 2: saved real run outputs (baseline scores, throughput, fine-tune summary)
 ├── assets/diagrams/                # Diagram generation scripts (this README's images)
-└── tests/                          # 95 tests covering every module above
+└── tests/                          # 125 tests covering every module above
 ```
 
 ---
@@ -479,6 +579,15 @@ python -m benchmark.run_benchmark --output benchmark_results/my_run.json
 # Generate a synthetic training-scenario batch, then train a curriculum across it
 python -m training.generate_synthetic_scenarios --n-scenarios 20 --seed 42 --output benchmark_results/synthetic_scenarios.json
 python -m training.train_ppo_curriculum --n-scenarios 5 --iterations-per-scenario 2 --checkpoint-dir checkpoints/curriculum
+
+# Compare shielded vs. unshielded behavior (hard-constraint safety shield)
+python -m evaluation.run_shielded_evaluation --n-episodes 5
+
+# Statistically rigorous benchmark scoring (mean +/- 95% CI across replicates)
+python -m benchmark.run_benchmark_replicated --n-replicates 5 --output benchmark_results/random_baseline_replicated.json
+
+# Simulator-overfitting / generalization-gap check against synthetic scenarios
+python -m evaluation.run_generalization_check --n-synthetic-scenarios 20 --output benchmark_results/generalization_check.json
 ```
 
 ---
@@ -495,5 +604,7 @@ informative as what was built:
 - **Weather/event-driven demand spikes are modeled as a uniform multiplier**, not a genuinely separate stochastic process -- sufficient to test robustness-under-load, not a full weather simulation.
 - **The benchmark suite (`benchmark/`) ships 3 tasks**, not a large public leaderboard -- see [`BENCHMARK_CARD.md`](BENCHMARK_CARD.md)'s "Limitations" section.
 - **The synthetic scenario generator only perturbs scalar economic/demand-volume parameters** -- it never changes grid size, agent count, or the real demand curve's shape, so it produces variety within the existing calibrated environment, not entirely novel environment topologies.
+- **The safety shield (`env/safety_shield.py`) is a rule-based hard constraint, not a CMDP/Lagrangian constrained-optimization method** -- it enforces a fixed rule (mask an action outright) rather than learning a dual multiplier that dynamically re-weights a soft penalty until a target expected-violation rate is met. A Lagrangian approach is a natural, documented extension, not something this repository implements or claims to.
+- **The generalization-gap check's threshold (`DEFAULT_GAP_THRESHOLD = 0.15`) is a documented, reasoned starting point, not a value tuned against a large held-out policy population** -- with only this project's own random-policy and short-training-run checkpoints available to calibrate against, the honest claim is "a principled default," not "an empirically optimized cutoff."
 
 > **Note:** See **[DESIGN.md](./DESIGN.md)** for the full environment design -- motivation, reward architecture, and evaluation protocol -- and **[BENCHMARK_CARD.md](./BENCHMARK_CARD.md)** for the Phase 2 reusable benchmark suite's task definitions, documented baseline scores, and limitations.

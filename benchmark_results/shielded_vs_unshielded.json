@@ -1,0 +1,95 @@
+{
+  "unshielded": {
+    "n_episodes": 5,
+    "efficiency": {
+      "policy_completions": 211,
+      "baseline_completions": 289,
+      "completion_ratio": 0.7301038062283737
+    },
+    "fairness": {
+      "zone_gini": 0.013033175355450236,
+      "rejection_rate_low_demand_zone": 0.0546583850931677,
+      "zone_completion_counts": [
+        54,
+        51,
+        52,
+        54
+      ]
+    },
+    "decision_quality": {
+      "value_sensitivity_correlation": -0.017798832739430295,
+      "n_decisions": 505
+    },
+    "robustness_2x_spike": {
+      "normal_completions": 37,
+      "spike_completions": 70,
+      "degradation_ratio": 1.8918918918918919
+    },
+    "robustness_2_5x_spike": {
+      "normal_completions": 35,
+      "spike_completions": 79,
+      "degradation_ratio": 2.257142857142857
+    },
+    "per_episode_completions": [
+      29,
+      41,
+      45,
+      45,
+      51
+    ],
+    "per_episode_rewards": [
+      1935.3211182378045,
+      2575.0178087119425,
+      2808.0636450865454,
+      2432.708629260448,
+      2515.0362297664383
+    ]
+  },
+  "shielded": {
+    "n_episodes": 5,
+    "efficiency": {
+      "policy_completions": 236,
+      "baseline_completions": 289,
+      "completion_ratio": 0.8166089965397924
+    },
+    "fairness": {
+      "zone_gini": 0.048728813559322036,
+      "rejection_rate_low_demand_zone": 0.4437869822485207,
+      "zone_completion_counts": [
+        64,
+        50,
+        63,
+        59
+      ]
+    },
+    "decision_quality": {
+      "value_sensitivity_correlation": 0.027413396715981114,
+      "n_decisions": 1819
+    },
+    "robustness_2x_spike": {
+      "normal_completions": 37,
+      "spike_completions": 70,
+      "degradation_ratio": 1.8918918918918919
+    },
+    "robustness_2_5x_spike": {
+      "normal_completions": 41,
+      "spike_completions": 93,
+      "degradation_ratio": 2.268292682926829
+    },
+    "per_episode_completions": [
+      37,
+      43,
+      50,
+      49,
+      57
+    ],
+    "per_episode_rewards": [
+      4129.306329484148,
+      4540.024408759885,
+      4052.1048196607976,
+      4442.398555251006,
+      2876.5419129210673
+    ]
+  },
+  "shield_override_count": 8102
+}
